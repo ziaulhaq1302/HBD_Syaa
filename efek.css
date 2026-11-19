@@ -1,0 +1,189 @@
+/* Efek tambahan untuk index.html dan kegiatan.html.
+   Dimuat SETELAH styles.css / kegiatan.css supaya bisa menimpa seperlunya. */
+
+/* ---------- progress scroll ---------- */
+.fx-progress { position: fixed; top: 0; left: 0; z-index: 40; width: 100%; height: 4px; background: linear-gradient(90deg, #ff6b60, #ffd264, #b99cff); pointer-events: none; transform: scaleX(0); transform-origin: left; }
+
+/* ---------- partikel, jejak, kursor ---------- */
+.fx-layer { position: fixed; inset: 0; z-index: 30; overflow: hidden; pointer-events: none; }
+.fx-particle, .fx-trail { position: absolute; line-height: 1; pointer-events: none; user-select: none; will-change: transform, opacity; }
+.fx-trail { color: var(--coral); font-size: 14px; }
+.fx-ring { position: fixed; top: 0; left: 0; z-index: 31; width: 34px; height: 34px; border: 2px solid var(--coral); border-radius: 50%; opacity: 0; pointer-events: none; transition: width .2s ease, height .2s ease, background .2s ease, opacity .25s ease; }
+.fx-ring.is-on { opacity: .55; }
+.fx-ring.is-active { width: 58px; height: 58px; background: #ff6b6024; }
+
+/* ---------- benda melayang ---------- */
+.fx-floaters { position: fixed; inset: 0; z-index: 2; overflow: hidden; pointer-events: none; }
+.fx-floater { position: absolute; bottom: -60px; color: var(--coral); opacity: .5; user-select: none; will-change: transform; animation: fx-float-up var(--dur, 20s) linear infinite; }
+.fx-floater.is-interactive { opacity: .85; cursor: pointer; pointer-events: auto; }
+.fx-floater.is-interactive:hover { filter: drop-shadow(0 0 8px #ffd264); }
+@keyframes fx-float-up {
+  0% { transform: translate3d(0, 0, 0) rotate(-8deg); }
+  50% { transform: translate3d(var(--sway, 30px), -60vh, 0) rotate(8deg); }
+  100% { transform: translate3d(0, -125vh, 0) rotate(-8deg); }
+}
+
+/* ---------- tilt 3D + kilau ---------- */
+.fx-tilt { position: relative; }
+.fx-tilt::before { position: absolute; inset: 0; z-index: 2; background: radial-gradient(circle at var(--gx, 50%) var(--gy, 50%), #ffffff55, transparent 55%); content: ""; opacity: 0; pointer-events: none; transition: opacity .25s ease; }
+.fx-tilt.fx-tilt-on { transform: perspective(800px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) translateY(-4px) !important; transition: transform .15s ease-out, box-shadow .25s ease, opacity .65s ease !important; box-shadow: 0 18px 38px #29224128; }
+.fx-tilt.fx-tilt-on::before { opacity: 1; }
+
+/* ---------- tombol magnet ---------- */
+.fx-magnet { transition: translate .25s ease, transform .18s ease, box-shadow .18s ease, background .18s ease, color .2s ease, border-color .2s ease; }
+
+/* ---------- tombol kembali ke atas ---------- */
+.fx-top { position: fixed; bottom: 22px; left: 22px; z-index: 25; width: 44px; height: 44px; display: grid; place-items: center; padding: 0; border: 2px solid #fff; border-radius: 50%; background: var(--coral); color: #fff; box-shadow: 0 8px 20px #ff6b6055; cursor: pointer; font-size: 20px; line-height: 1; opacity: 0; pointer-events: none; transform: translateY(20px) scale(.8); transition: opacity .3s ease, transform .3s cubic-bezier(.2,.9,.3,1.4); }
+.fx-top.is-visible { opacity: 1; pointer-events: auto; transform: none; }
+.fx-top:hover { transform: translateY(-4px) scale(1.08); }
+.fx-top:focus-visible { outline: 3px solid #6f54ce; outline-offset: 3px; }
+
+/* ---------- judul berkilau ---------- */
+h2 span { background: linear-gradient(90deg, #ff6b60, #ffae46, #b99cff, #ff6b60); background-size: 300% 100%; -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent; animation: fx-shimmer 7s linear infinite; }
+@keyframes fx-shimmer { to { background-position: 300% 0; } }
+
+/* ---------- bintang kecil berputar ---------- */
+.eyebrow-star, .closing-star { display: inline-block; animation: fx-spin 7s linear infinite; }
+@keyframes fx-spin { to { transform: rotate(360deg); } }
+
+/* ---------- lightbox ---------- */
+.photo-lightbox[open], .birthday-lightbox[open] { animation: fx-lb-in .35s cubic-bezier(.2,.9,.3,1.1); }
+@keyframes fx-lb-in { from { opacity: 0; transform: scale(.92) translateY(14px); } to { opacity: 1; transform: none; } }
+.photo-lightbox-toolbar, .birthday-lightbox-toolbar { grid-template-columns: 38px 38px 38px 1fr 38px; }
+.fx-lb-play { width: 38px; height: 38px; display: grid; place-items: center; padding: 0; border: 1px solid #ffffff80; border-radius: 50%; background: #ffffff14; color: #fff; cursor: pointer; font-size: 13px; line-height: 1; transition: background .2s ease, transform .2s ease; }
+.fx-lb-play[aria-pressed="true"] { background: var(--coral); border-color: #fff; }
+.fx-lb-play:focus-visible { outline: 3px solid #e28d78; outline-offset: 3px; }
+.photo-lightbox-image, .birthday-lightbox-image { cursor: zoom-in; touch-action: pan-y pinch-zoom; transition: scale .3s ease; }
+.photo-lightbox-image.is-zoomed, .birthday-lightbox-image.is-zoomed { cursor: zoom-out; scale: 2.2; }
+@media (max-width: 680px) {
+  .photo-lightbox-toolbar, .birthday-lightbox-toolbar { grid-template-columns: 34px 34px 34px 1fr 34px; }
+  .fx-lb-play { width: 34px; height: 34px; }
+  .fx-top { bottom: 14px; left: 14px; width: 40px; height: 40px; }
+}
+@media (hover: hover) and (pointer: fine) {
+  .fx-lb-play:hover { transform: scale(1.06); background: #ffffff30; }
+  .fx-lb-play[aria-pressed="true"]:hover { background: #e9685a; }
+}
+
+/* =========================================================
+   Khusus index.html
+   ========================================================= */
+.hero::before { transform: translateY(calc(var(--scroll, 0) * -.1px)); }
+.floating-shape { transition: translate .35s ease-out; cursor: pointer; }
+.button-primary { position: relative; overflow: hidden; }
+.button-primary::after { position: absolute; top: 0; left: -60%; width: 40%; height: 100%; background: linear-gradient(100deg, transparent, #ffffff66, transparent); content: ""; transform: skewX(-20deg); animation: fx-shine 3.4s ease-in-out infinite; pointer-events: none; }
+@keyframes fx-shine { 0%, 55% { left: -60%; } 100% { left: 130%; } }
+
+.fx-draggable { cursor: grab; touch-action: none; user-select: none; }
+.fx-draggable.is-dragging { cursor: grabbing; z-index: 6; filter: drop-shadow(0 10px 8px #29224133); }
+
+.fx-typing::after { margin-left: 2px; border-right: 2px solid var(--coral); content: ""; animation: fx-caret .7s steps(1) infinite; }
+@keyframes fx-caret { 50% { border-color: transparent; } }
+
+.music-toggle.is-playing::before { position: absolute; inset: -4px; z-index: 0; border: 2px solid var(--coral); border-radius: 50%; content: ""; pointer-events: none; animation: fx-ring-pulse 1.6s ease-out infinite; }
+@keyframes fx-ring-pulse { from { opacity: .9; transform: scale(1); } to { opacity: 0; transform: scale(1.55); } }
+
+.activity-teaser-stamp { transition: transform .35s cubic-bezier(.2,.9,.3,1.4); }
+.activity-teaser:hover .activity-teaser-stamp { transform: rotate(-8deg) scale(1.12); }
+
+/* =========================================================
+   Khusus kegiatan.html
+   ========================================================= */
+.fx-word { display: inline-block; font-style: normal; opacity: 0; transform: translateY(.6em) rotate(4deg); animation: fx-word-in .7s cubic-bezier(.2,.8,.2,1) forwards; animation-delay: calc(.3s + var(--i, 0) * .09s); }
+@keyframes fx-word-in { to { opacity: 1; transform: none; } }
+
+.album-jump-nav { position: sticky; top: 8px; z-index: 12; padding: 8px; border-radius: 999px; background: #fff8f1cc; backdrop-filter: blur(8px); }
+@media (min-width: 681px) {
+  .album-jump-nav { width: fit-content; max-width: 100%; margin-right: auto; margin-left: auto; }
+}
+.album-jump-nav a.is-active { border-color: var(--coral); background: var(--coral); color: #fff; }
+.album-jump-nav a.is-active span { background: #fff; color: var(--coral); }
+.moment-group { scroll-margin-top: 90px; }
+
+.zia-avatar { cursor: pointer; }
+.zia-status span { transition: transform .2s ease, background .2s ease; }
+@media (hover: hover) and (pointer: fine) {
+  .zia-status span:hover { transform: translateY(-3px) rotate(-2deg); background: #fff0e9; }
+}
+
+html.has-reveal .activity-cover-photos.is-visible .moment-photo,
+html.has-reveal .moment-group.is-visible .moment-photo { animation: fx-pop .6s cubic-bezier(.2,.9,.3,1.3) backwards; animation-delay: calc(var(--i, 0) * 90ms); }
+@keyframes fx-pop { from { opacity: 0; transform: translateY(24px) scale(.8) rotate(-4deg); } to { opacity: 1; transform: none; } }
+
+.activity-cover-photos .moment-photo:nth-child(odd) { translate: 0 clamp(-60px, calc(var(--scroll, 0) * -.03px), 0px); }
+.activity-cover-photos .moment-photo:nth-child(even) { translate: 0 clamp(0px, calc(var(--scroll, 0) * .03px), 60px); }
+
+/* ---------- hormati reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .fx-word { opacity: 1; transform: none; animation: none; }
+  .eyebrow-star, .closing-star, h2 span, .button-primary::after, .music-toggle.is-playing::before { animation: none; }
+  .fx-floater { animation: none; }
+  .fx-tilt.fx-tilt-on { transform: none !important; }
+  .activity-cover-photos .moment-photo { translate: none; }
+}
+
+/* =========================================================
+   Perbaikan bug
+   ========================================================= */
+
+/* Nav album tidak pernah "menempel" karena .page-shell { overflow: hidden }
+   membuatnya jadi scroll container. overflow: clip tetap memotong isi
+   (strip miring, dll.) tanpa merusak position: sticky. */
+@supports (overflow: clip) {
+  .page-shell { overflow: clip; }
+}
+
+/* Mode gelap: lingkaran krem di belakang foto terlalu menyilaukan,
+   tombol "Lipat surat lagi" jadi tak terbaca saat di-hover, dan teks kecil terlalu pudar. */
+:root[data-theme="dark"] .hero::before { background: #3a2c3d; }
+:root[data-theme="dark"] .letter-close:hover { background: #3d3248; color: var(--ink); }
+:root[data-theme="dark"] .eyebrow,
+:root[data-theme="dark"] .tiny-note { color: var(--muted); }
+:root[data-theme="dark"] .fx-progress { opacity: .9; }
+
+/* Teks judul h2 yang dipecah per huruf tidak boleh ikut efek kilau per-huruf. */
+h2 .fx-split, h2 .fx-split span { background: none; -webkit-text-fill-color: currentColor; color: inherit; animation: none; }
+
+/* =========================================================
+   Teks bergerak
+   ========================================================= */
+.fx-split { display: inline; }
+.fx-wordwrap { display: inline-block; white-space: nowrap; }
+.fx-char { display: inline-block; will-change: transform; transition: color .2s ease; }
+@media (hover: hover) and (pointer: fine) {
+  .fx-char:hover { color: var(--coral); }
+}
+
+/* kalimat yang berganti-ganti */
+.fx-rotator { min-height: 1.6em; margin: -12px 0 24px; color: var(--ink); font-family: var(--font-display); font-size: 17px; font-weight: 600; line-height: 1.6; }
+.fx-rotator-text { color: var(--coral); }
+.fx-rotator-caret { display: inline-block; width: 2px; height: 1.05em; margin-left: 3px; background: var(--coral); vertical-align: -.15em; animation: fx-caret-blink .8s steps(1) infinite; }
+@keyframes fx-caret-blink { 50% { opacity: 0; } }
+.activity-page-intro .fx-rotator { margin: 12px 0 0; font-size: 15px; }
+
+/* kata-kata naik satu per satu */
+.fx-rise .fx-w { display: inline-block; opacity: 0; transform: translateY(.9em) rotate(3deg); transition: opacity .6s ease, transform .7s cubic-bezier(.2,1.3,.4,1); transition-delay: calc(var(--i, 0) * 90ms); }
+.fx-rise.is-in .fx-w { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .fx-rise .fx-w { opacity: 1; transform: none; transition: none; }
+  .fx-rotator-caret { animation: none; }
+}
+
+
+/* Toast teks melayang saat balon diletuskan */
+.fx-toast-pop {
+  position: fixed;
+  z-index: 35;
+  color: var(--coral);
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 700;
+  pointer-events: none;
+  white-space: nowrap;
+  text-shadow: 0 2px 8px rgba(255, 255, 255, 0.9);
+}
+
+:root[data-theme="dark"] .fx-toast-pop {
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+}

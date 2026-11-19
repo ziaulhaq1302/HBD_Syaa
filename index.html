@@ -1,0 +1,591 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#fff7ed">
+    <meta name="description" content="Pesta ulang tahun kecil yang penuh warna, tawa, dan kejutan spesial.">
+    <title>Selamat ulang tahun, Syaa! — Kita Rayakan</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Fredoka:wght@500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Berkas Gaya CSS -->
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="kegiatan.css">
+    <link rel="stylesheet" href="efek.css">
+
+    <!-- Berkas Skrip JS Terpadu -->
+    <script src="music-state.js" defer></script>
+    <script src="script.js" defer></script>
+    <script src="kegiatan.js" defer></script>
+    <script src="efek-umum.js" defer></script>
+    <script src="efek-index.js" defer></script>
+    <script src="efek-kegiatan.js" defer></script>
+  </head>
+  <body>
+    <!-- Kanvas Partikel Confetti -->
+    <canvas class="confetti-canvas" id="confettiCanvas" aria-hidden="true"></canvas>
+
+    <div class="page-shell">
+      <!-- ====================================================================
+           TAMPILAN 1: Halaman Utama Ulang Tahun (Kita Rayakan)
+           ==================================================================== -->
+      <div id="view-birthday" class="app-view">
+        <header class="site-header">
+          <a class="brand" href="#" aria-label="Kita Rayakan, beranda">
+            <span class="brand-icon" aria-hidden="true">✳</span>
+            <span>Kita <span class="brand-light">Rayakan</span></span>
+          </a>
+          <nav class="header-nav" aria-label="Navigasi">
+            <a class="header-link" href="#galeri">Lihat galeri <span aria-hidden="true">↘</span></a>
+            <a class="header-link" href="#surat">Ada surat <span aria-hidden="true">↘</span></a>
+            <button class="sound-toggle" id="soundToggle" type="button" aria-label="Bisukan efek suara" aria-pressed="true">
+              <span class="sound-toggle-icon" id="soundToggleIcon" aria-hidden="true">🔊</span>
+              <span id="soundToggleLabel">Suara</span>
+            </button>
+            <button class="theme-toggle" id="themeToggle" type="button" aria-label="Aktifkan mode gelap" aria-pressed="false">
+              <span class="theme-toggle-icon" id="themeToggleIcon" aria-hidden="true">☾</span>
+              <span class="theme-toggle-label" id="themeToggleLabel">Mode gelap</span>
+            </button>
+          </nav>
+        </header>
+
+        <main>
+          <!-- Bagian Utama (Hero) -->
+          <section class="hero" aria-labelledby="birthdayTitle">
+            <div class="hero-copy" data-reveal>
+              <p class="eyebrow"><span class="eyebrow-star" aria-hidden="true">✦</span> HARI PALING SPESIAL TAHUN INI</p>
+              <h1 id="birthdayTitle">
+                Selamat ulang tahun,<br>
+                <input class="birthday-name" id="birthdayName" type="text" value="Syaa" maxlength="24" aria-label="Nama yang berulang tahun">
+                <span class="title-sparkle" aria-hidden="true">✷</span>
+              </h1>
+              <p class="hero-description">Hari ini semua hal baik kumpul buat kamu. Siap-siap ya, bakal banyak tawa, doa, dan potongan kue paling enak! 🎂</p>
+              <div class="hero-actions">
+                <button class="button button-primary" id="celebrateButton" type="button">Rayakan sekarang <span aria-hidden="true">🎉</span></button>
+                <a class="button button-secondary" href="#kejutan">Lihat kejutan <span aria-hidden="true">↓</span></a>
+              </div>
+              <div class="tiny-note"><span class="tiny-note-icon" aria-hidden="true">💌</span> Dibuat khusus dengan banyak cinta</div>
+            </div>
+
+            <div class="photo-side" data-reveal data-reveal-delay="1">
+              <span class="floating-shape shape-star" aria-hidden="true">✳</span>
+              <span class="floating-shape shape-heart" aria-hidden="true">♥</span>
+
+              <div class="photo-card" id="photoDropZone">
+                <div class="photo-frame">
+                  <img id="birthdayPhoto" class="birthday-photo" src="foto.1.jpeg" alt="Foto utama yang sedang berulang tahun" decoding="async">
+                  <div class="photo-placeholder" id="photoPlaceholder" hidden>
+                    <span class="placeholder-sun" aria-hidden="true">☀</span>
+                    <span class="placeholder-emoji" aria-hidden="true">📸</span>
+                    <strong>Foto bintang hari ini</strong>
+                    <span>Taruh fotonya di sini, yuk!</span>
+                  </div>
+                  <label class="photo-upload" for="photoInput">
+                    <span aria-hidden="true">＋</span> Ganti foto
+                  </label>
+                  <input id="photoInput" class="visually-hidden" type="file" accept="image/*" aria-label="Pilih foto orang yang berulang tahun">
+                </div>
+                <div class="photo-caption">
+                  <span class="caption-line"></span>
+                  <span>MAIN CHARACTER ENERGY</span>
+                  <span class="caption-line"></span>
+                </div>
+                <!-- Bilah Pilihan Filter Foto Interaktif -->
+                <div class="photo-filter-bar" aria-label="Pilih filter foto">
+                  <button type="button" class="photo-filter-btn is-active" data-filter="normal">Normal</button>
+                  <button type="button" class="photo-filter-btn" data-filter="warm">Hangat ☀️</button>
+                  <button type="button" class="photo-filter-btn" data-filter="pastel">Pastel 🌸</button>
+                  <button type="button" class="photo-filter-btn" data-filter="vintage">Kenangan 🎞️</button>
+                </div>
+              </div>
+
+              <div class="sticker sticker-love" aria-hidden="true">LOVE<br>YOU!</div>
+              <div class="sticker sticker-wow" aria-hidden="true">IT'S<br>YOUR<br>DAY!</div>
+            </div>
+          </section>
+
+          <!-- Pita Teks Berjalan (Marquee Strip) -->
+          <section class="birthday-strip" aria-label="Ucapan ulang tahun">
+            <div class="strip-content">
+              <span>HARI INI GILIRANMU BERSINAR</span><i aria-hidden="true">✦</i>
+              <span>MAKIN SERU, MAKIN BAHAGIA</span><i aria-hidden="true">✿</i>
+              <span>HARI INI GILIRANMU BERSINAR</span><i aria-hidden="true">✦</i>
+              <span>MAKIN SERU, MAKIN BAHAGIA</span><i aria-hidden="true">✿</i>
+            </div>
+          </section>
+
+          <!-- Bagian Kejutan & Kartu Ucapan -->
+          <section class="surprise-section" id="kejutan" aria-labelledby="surpriseTitle">
+            <div class="section-heading" data-reveal>
+              <p class="eyebrow"><span class="eyebrow-star" aria-hidden="true">✦</span> KECIL-KECILAN, TAPI PENUH SAYANG</p>
+              <h2 id="surpriseTitle">Satu hari, <span>banyak bahagia.</span></h2>
+            </div>
+
+            <div class="surprise-grid">
+              <!-- Kartu 1: Kue Ulang Tahun & Lilin Interaktif -->
+              <article class="cake-card" data-reveal data-reveal-delay="1">
+                <div class="card-topline"><span>WISH O'CLOCK</span><span aria-hidden="true">✧ 01 / 03</span></div>
+                <div class="cake-scene" id="cakeScene">
+                  <span class="cake-spark cake-spark-one" aria-hidden="true">✦</span>
+                  <span class="cake-spark cake-spark-two" aria-hidden="true">✧</span>
+                  <div class="candles" aria-label="Lilin ulang tahun (klik lilin untuk meniup atau menyalakan per batang)">
+                    <span class="candle" data-candle="1" role="button" tabindex="0" aria-label="Lilin 1: Klik untuk tiup atau nyalakan"><i class="flame"></i><i class="candle-smoke"></i></span>
+                    <span class="candle" data-candle="2" role="button" tabindex="0" aria-label="Lilin 2: Klik untuk tiup atau nyalakan"><i class="flame"></i><i class="candle-smoke"></i></span>
+                    <span class="candle" data-candle="3" role="button" tabindex="0" aria-label="Lilin 3: Klik untuk tiup atau nyalakan"><i class="flame"></i><i class="candle-smoke"></i></span>
+                  </div>
+                  <span class="blow-puff" aria-hidden="true">💨</span>
+                  <div class="cake cake-top"></div>
+                  <div class="cake cake-bottom"><span class="cake-decoration">♥ &nbsp; ♥ &nbsp; ♥</span></div>
+                  <div class="cake-plate"></div>
+                </div>
+                <p class="cake-message" id="cakeMessage">Tutup mata, buat permintaan, lalu tiup lilinnya!</p>
+                <button class="button button-dark" id="candleButton" type="button">Tiup lilin <span aria-hidden="true">💨</span></button>
+              </article>
+
+              <!-- Kartu 2: Surat Harapan -->
+              <article class="wish-card" data-reveal data-reveal-delay="2">
+                <div class="wish-card-top"><span class="wish-icon" aria-hidden="true">💌</span><span class="card-topline-label">SURAT KECIL BUAT KAMU</span></div>
+                <div class="wish-card-body">
+                  <p class="wish-intro">Hei, kamu!</p>
+                  <p>Semoga tahun barumu penuh cerita seru, orang-orang baik, dan alasan buat ketawa setiap hari. Jangan lupa: kamu itu spesial, bukan cuma hari ini. 💛</p>
+                  <div class="wish-signature">Peluk hangat dari <span>kawan-kawan terdekatmu ♡</span></div>
+                </div>
+                <span class="wish-doodle" aria-hidden="true">✿</span>
+              </article>
+
+              <!-- Kartu 3: Pengingat Hangat -->
+              <article class="little-things-card" data-reveal data-reveal-delay="3">
+                <div class="card-topline"><span>INGAT INI YA</span><span aria-hidden="true">✧ 03 / 03</span></div>
+                <div class="little-things-content">
+                  <div class="little-icon" aria-hidden="true">🌈</div>
+                  <h3>Kamu layak dapat semua hal baik.</h3>
+                  <p>Hari ini, besok, dan seterusnya. Jadi nikmati kuenya, kumpulkan peluknya, dan jangan buru-buru dewasa. 😉</p>
+                  <span class="little-doodle" aria-hidden="true">✳</span>
+                </div>
+              </article>
+            </div>
+
+            <!-- Kotak Generator Doa & Harapan Interaktif -->
+            <div class="fortune-box" data-reveal>
+              <p class="fortune-kicker">✦ KARTU HARAPAN HARI INI ✦</p>
+              <p class="fortune-quote" id="fortuneQuote">"Semoga langkahmu selalu ringan, dan semesta selalu berpihak pada senyummu! ✨"</p>
+              <button class="fortune-btn" id="fortuneBtn" type="button">Ambil Doa Lainnya <span aria-hidden="true">🔮</span></button>
+            </div>
+          </section>
+
+          <!-- Kalimat Penutup -->
+          <section class="closing-note" aria-label="Ucapan penutup" data-reveal>
+            <span class="closing-star" aria-hidden="true">✦</span>
+            <p>Hari ini tentang kamu. <span>Jadi, bersinarlah sepuasnya.</span></p>
+            <span class="closing-star" aria-hidden="true">✦</span>
+          </section>
+
+          <!-- Galeri Foto Kenangan -->
+          <section class="gallery-section" id="galeri" aria-labelledby="galleryTitle">
+            <div class="section-heading" data-reveal>
+              <p class="eyebrow"><span class="eyebrow-star" aria-hidden="true">✦</span> CERITA BERSAMA TEMAN-TEMAN</p>
+              <h2 id="galleryTitle">Kenangan dari <span>teman-temanmu.</span></h2>
+              <p class="gallery-intro">Beberapa foto kenangan bersama teman-temanmu.</p>
+            </div>
+
+            <div class="photo-gallery">
+              <figure class="gallery-photo gallery-photo-one" data-reveal>
+                <button class="gallery-photo-button" type="button" aria-label="Perbesar foto 1 dari 6: Si paling spesial">
+                  <img src="foto.1.jpeg" alt="Foto Syaa yang sedang berulang tahun" loading="lazy" decoding="async">
+                </button>
+                <figcaption>Si paling spesial</figcaption>
+              </figure>
+
+              <figure class="gallery-photo gallery-photo-two" data-reveal data-reveal-delay="1">
+                <button class="gallery-photo-button" type="button" aria-label="Perbesar foto 2 dari 6: Momen bareng teman">
+                  <img src="foto.2.jpeg" alt="Selfie berdua di tengah suasana ramai" loading="lazy" decoding="async">
+                </button>
+                <figcaption>Momen bareng teman</figcaption>
+              </figure>
+
+              <figure class="gallery-photo gallery-photo-three" data-reveal data-reveal-delay="2">
+                <button class="gallery-photo-button" type="button" aria-label="Perbesar foto 3 dari 6: Hari yang menyenangkan">
+                  <img src="foto.3.jpeg" alt="Empat teman berfoto bersama di bawah pohon" loading="lazy" decoding="async">
+                </button>
+                <figcaption>Hari yang menyenangkan</figcaption>
+              </figure>
+
+              <figure class="gallery-photo gallery-photo-four" data-reveal data-reveal-delay="3">
+                <button class="gallery-photo-button" type="button" aria-label="Perbesar foto 4 dari 6: Senyum hari ini">
+                  <img src="foto.4.jpeg" alt="Pose ceria di ruang terbuka" loading="lazy" decoding="async">
+                </button>
+                <figcaption>Senyum hari ini</figcaption>
+              </figure>
+
+              <figure class="gallery-photo gallery-photo-five" data-reveal data-reveal-delay="1">
+                <button class="gallery-photo-button" type="button" aria-label="Perbesar foto 5 dari 6: Seru-seruan bersama">
+                  <img src="foto.5.jpeg" alt="Foto ramai-ramai dengan kostum lucu" loading="lazy" decoding="async">
+                </button>
+                <figcaption>Seru-seruan bersama</figcaption>
+              </figure>
+
+              <figure class="gallery-photo gallery-photo-six" data-reveal data-reveal-delay="2">
+                <button class="gallery-photo-button" type="button" aria-label="Perbesar foto 6 dari 6: Satu lagi momen bareng teman">
+                  <img src="foto.6.jpeg" alt="Momen bersama teman-teman" loading="lazy" decoding="async">
+                </button>
+                <figcaption>Satu lagi momen bareng teman</figcaption>
+              </figure>
+            </div>
+          </section>
+
+          <!-- Bagian Surat Spesial Interaktif -->
+          <section class="letter-section" id="surat" aria-labelledby="letterTitle">
+            <div class="section-heading" data-reveal>
+              <p class="eyebrow"><span class="eyebrow-star" aria-hidden="true">✦</span> ADA SESUATU BUAT KAMU</p>
+              <h2 id="letterTitle">Sebuah surat <span>kecil.</span></h2>
+            </div>
+
+            <div class="letter-scene" id="letterScene" data-reveal>
+              <div class="butterfly-flight" aria-hidden="true">
+                <span>🦋</span><span>🦋</span><span>🦋</span><span>🦋</span>
+              </div>
+              <div class="letter-envelope">
+                <div class="envelope-flap" aria-hidden="true"></div>
+                <span class="envelope-seal" aria-hidden="true">♡</span>
+                <button class="letter-toggle" id="letterToggle" type="button" aria-expanded="false" aria-controls="letterContents">
+                  <span class="letter-icon" aria-hidden="true">✉</span>
+                  <span id="letterToggleLabel">Buka surat kecilmu</span>
+                </button>
+              </div>
+              <div class="letter-contents" id="letterContents" hidden>
+                <div class="letter-paper">
+                  <p class="letter-greeting">Surat kecil dari kawan-kawan terdekatmu ♡</p>
+                  <h3>Selamat ulang tahun, <span id="letterRecipientName">Syaa</span>!</h3>
+                  <p class="letter-message">Tanggal 19 November selalu jadi alasan istimewa untuk merayakan hadirnya kamu, Syaa. Kamu punya hati yang tulus dan peka, selalu hadir untuk orang-orang tersayang, serta tekad kuat untuk mengejar hal yang kamu percaya. Semoga di usia yang baru ini kamu diberi kesehatan, hati yang tenang, banyak tawa, dan keberanian untuk meraih semua impianmu. Terima kasih sudah menjadi dirimu sendiri. Kami senang punya kawan sepertimu. ♡</p>
+                  <p class="letter-signature">Dengan sayang, kawan-kawanmu ♡</p>
+                  <button class="letter-close" id="letterClose" type="button">Lipat surat lagi <span aria-hidden="true">↑</span></button>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Teaser Menuju Halaman Kegiatan Zia -->
+          <section class="activity-teaser" aria-labelledby="activityTeaserTitle" data-reveal>
+            <div class="activity-teaser-copy">
+              <p class="eyebrow"><span class="eyebrow-star" aria-hidden="true">✦</span> KABAR TERBARU DARI ACEH</p>
+              <h2 id="activityTeaserTitle">Liat kegiatan <span>anak teknik yuk.</span></h2>
+              <p>Intip kabar Zia dan foto-foto kegiatannya di halaman terpisah.</p>
+              <div class="teaser-cheer-badge" id="teaserCheerBadge">
+                <span aria-hidden="true">💌</span> <span id="teaserCheerCount">0</span> semangat sudah terkirim buat Zia
+              </div>
+              <a class="activity-jump" href="kegiatan.html">Buka cerita Zia <span aria-hidden="true">↗</span></a>
+            </div>
+            <div class="activity-teaser-stamp" aria-hidden="true">
+              <img src="fotod1.JPG" alt="" loading="lazy" decoding="async">
+            </div>
+          </section>
+        </main>
+
+        <footer class="site-footer">
+          <a class="brand footer-brand" href="#" aria-label="Kita Rayakan, kembali ke atas">
+            <span class="brand-icon" aria-hidden="true">✳</span>
+            <span>Kita <span class="brand-light">Rayakan</span></span>
+          </a>
+          <span>Dirayakan dengan cinta, dibuat buat kamu <span aria-hidden="true">♡</span></span>
+          <a class="back-to-top" href="#" aria-label="Kembali ke atas">↑</a>
+        </footer>
+      </div>
+
+      <!-- ====================================================================
+           TAMPILAN 2: Halaman Kegiatan Zia (Kabar dari Aceh)
+           ==================================================================== -->
+      <div id="view-activity" class="app-view" hidden>
+        <header class="site-header activity-site-header">
+          <a class="brand" href="index.html" aria-label="Kembali ke Kita Rayakan">
+            <span class="brand-icon" aria-hidden="true">✳</span>
+            <span>Kabar <span class="brand-light">Aceh</span></span>
+          </a>
+          <nav class="header-nav" aria-label="Navigasi">
+            <a class="activity-back-link" href="index.html">
+              <span aria-hidden="true">←</span> Kembali ke ucapan
+            </a>
+            <button class="sound-toggle" id="soundToggleActivity" type="button" aria-label="Bisukan efek suara" aria-pressed="true">
+              <span class="sound-toggle-icon" aria-hidden="true">🔊</span>
+              <span>Suara</span>
+            </button>
+            <button class="theme-toggle" id="themeToggleActivity" type="button" aria-label="Aktifkan mode gelap" aria-pressed="false">
+              <span class="theme-toggle-icon" aria-hidden="true">☾</span>
+              <span>Mode gelap</span>
+            </button>
+          </nav>
+        </header>
+
+        <main>
+          <!-- Hero Kegiatan & Kartu Profil Zia -->
+          <section class="activity-page-hero" aria-labelledby="activityPageTitle">
+            <div class="activity-page-intro" data-reveal>
+              <p class="eyebrow"><span class="eyebrow-star" aria-hidden="true">✦</span> KABAR TERBARU DARI ACEH</p>
+              <h1 id="activityPageTitle">Liat kegiatan <span>anak teknik yuk.</span></h1>
+              <p>Potongan cerita kuliah, teman-teman, dan hari-hari Zia di Aceh.</p>
+              <a class="activity-cv-link" href="https://ziaulhaq-io.github.io/cv-ziaulhaq/" target="_blank" rel="noopener noreferrer">
+                Lihat CV lengkap <span aria-hidden="true">↗</span>
+              </a>
+            </div>
+
+            <article class="zia-profile-card" aria-label="Kabar Zia dari Aceh" data-reveal data-reveal-delay="1">
+              <div class="zia-profile-heading">
+                <div class="zia-avatar" aria-hidden="true">
+                  <img src="fotod6.jpeg" alt="" decoding="async">
+                </div>
+                <div>
+                  <p class="zia-kicker">MAHASISWA TEKNOLOGI INFORMASI</p>
+                  <h2>Zia Ulhaq</h2>
+                </div>
+                <span class="zia-location"><span aria-hidden="true">●</span> Aceh</span>
+              </div>
+
+              <div class="zia-message">
+                <span aria-hidden="true">♡</span>
+                <p><strong><span class="zia-recipient-name">Syaa</span>, jangan khawatir ya.</strong> Zia aman-aman saja di Aceh. Zia memang anak Aceh; di sini banyak main dan belajar. Sebentar lagi Zia mau skripsi—doakan lancar, ya! Orang tersayangmu di Aceh selalu baik-baik saja. ♡</p>
+              </div>
+
+              <div class="zia-status">
+                <span>Terus belajar</span>
+                <span>Main bareng teman</span>
+                <span>Menuju skripsi</span>
+              </div>
+
+              <div class="zia-cheer">
+                <button class="zia-cheer-button" id="ziaCheerButton" type="button" aria-pressed="false">
+                  <span aria-hidden="true">♡</span>
+                  <span id="ziaCheerLabel">Kirim semangat buat Zia</span> (<span id="ziaCheerCounter">0</span>)
+                </button>
+                <p class="zia-cheer-message" id="ziaCheerMessage" aria-live="polite"></p>
+              </div>
+
+              <!-- Hadiah Interaktif untuk Zia -->
+              <div class="zia-gift-actions" aria-label="Kirim hadiah perhatian untuk Zia">
+                <button class="zia-gift-btn" id="ziaCoffeeBtn" type="button">Traktir Kopi Aceh ☕</button>
+                <button class="zia-gift-btn" id="ziaThesisBtn" type="button">Kirim Doa Skripsi 🎓</button>
+              </div>
+              <p class="zia-toast-note" id="ziaToastNote" aria-live="polite"></p>
+            </article>
+          </section>
+
+          <!-- Pita Teks Berjalan (Marquee) -->
+          <div class="zia-marquee" role="note">
+            <div class="zia-marquee-track">
+              <span class="zia-marquee-copy">
+                Zia di Aceh <span aria-hidden="true">✦</span> Anak Teknik <span aria-hidden="true">✦</span> Banyak main dan belajar <span aria-hidden="true">✦</span> Menuju skripsi <span aria-hidden="true">✦</span>
+              </span>
+              <span class="zia-marquee-copy" aria-hidden="true">
+                Zia di Aceh <span aria-hidden="true">✦</span> Anak Teknik <span aria-hidden="true">✦</span> Banyak main dan belajar <span aria-hidden="true">✦</span> Menuju skripsi <span aria-hidden="true">✦</span>
+              </span>
+            </div>
+          </div>
+
+          <!-- Foto Pembuka (Cover Highlights) -->
+          <section class="activity-cover-photos" aria-label="Foto pembuka" data-reveal>
+            <button class="moment-photo" type="button" aria-label="Perbesar foto pembuka 1 dari 6">
+              <img src="fotod1.JPG" alt="" loading="lazy" decoding="async">
+            </button>
+            <button class="moment-photo" type="button" aria-label="Perbesar foto pembuka 2 dari 6">
+              <img src="fotod2.jpeg" alt="" loading="lazy" decoding="async">
+            </button>
+            <button class="moment-photo" type="button" aria-label="Perbesar foto pembuka 3 dari 6">
+              <img src="fotod3.jpeg" alt="" loading="lazy" decoding="async">
+            </button>
+            <button class="moment-photo" type="button" aria-label="Perbesar foto pembuka 4 dari 6">
+              <img src="fotod4.jpeg" alt="" loading="lazy" decoding="async">
+            </button>
+            <button class="moment-photo" type="button" aria-label="Perbesar foto pembuka 5 dari 6">
+              <img src="fotod5.jpeg" alt="" loading="lazy" decoding="async">
+            </button>
+            <button class="moment-photo" type="button" aria-label="Perbesar foto pembuka 6 dari 6">
+              <img src="fotod6.jpeg" alt="" loading="lazy" decoding="async">
+            </button>
+          </section>
+
+          <!-- Koleksi Album Kegiatan -->
+          <section class="moment-collection" aria-labelledby="momentCollectionTitle">
+            <div class="moment-collection-heading" data-reveal>
+              <p class="eyebrow"><span class="eyebrow-star" aria-hidden="true">✦</span> ALBUM KEGIATAN</p>
+              <h2 id="momentCollectionTitle">Momen <span>keseharian.</span></h2>
+              <p>Klik foto untuk melihat ukuran lebih besar.</p>
+            </div>
+
+            <!-- Navigasi Lompat Antar Album -->
+            <nav class="album-jump-nav" aria-label="Pilih album">
+              <a href="#activityAlbumTitle">Kegiatan <span>6</span></a>
+              <a href="#healingAlbumTitle">Healing <span>7</span></a>
+              <a href="#friendsAlbumTitle">Kawan-kawan <span>2</span></a>
+              <a href="#thesisAlbumTitle">Tim skripsi <span>6</span></a>
+            </nav>
+
+            <div class="moment-groups">
+              <!-- Album 1: Kegiatan Kampus & Proyek -->
+              <section class="moment-group" aria-labelledby="activityAlbumTitle" data-reveal>
+                <h3 id="activityAlbumTitle">Kegiatan</h3>
+                <div class="moment-photo-grid">
+                  <button class="moment-photo" type="button" aria-label="Perbesar foto 1 dari 6 di Kegiatan">
+                    <img src="kn1.jpg" alt="" loading="lazy" decoding="async">
+                  </button>
+                  <button class="moment-photo" type="button" aria-label="Perbesar foto 2 dari 6 di Kegiatan">
+                    <img src="kn2.jpg" alt="" loading="lazy" decoding="async">
+                  </button>
+                  <button class="moment-photo" type="button" aria-label="Perbesar foto 3 dari 6 di Kegiatan">
+                    <img src="kn3.jpeg" alt="" loading="lazy" decoding="async">
+                  </button>
+                  <button class="moment-photo" type="button" aria-label="Perbesar foto 4 dari 6 di Kegiatan">
+                    <img src="kn4.jpeg" alt="" loading="lazy" decoding="async">
+                  </button>
+                  <button class="moment-photo" type="button" aria-label="Perbesar foto 5 dari 6 di Kegiatan">
+                    <img src="kn5.jpeg" alt="" loading="lazy" decoding="async">
+                  </button>
+                  <button class="moment-photo" type="button" aria-label="Perbesar foto 6 dari 6 di Kegiatan">
+                    <img src="kn7.jpeg" alt="" loading="lazy" decoding="async">
+                  </button>
+                </div>
+              </section>
+
+              <!-- Album 2: Healing & Jalan-jalan -->
+              <section class="moment-group" aria-labelledby="healingAlbumTitle" data-reveal>
+                <h3 id="healingAlbumTitle">Healing</h3>
+                <div class="moment-photo-grid">
+                  <button class="moment-photo" type="button" aria-label="Perbesar foto 1 dari 7 di Healing">
+                    <img src="hl1.jpeg" alt="" loading="lazy" decoding="async">
+                  </button>
+                  <button class="moment-photo" type="button" aria-label="Perbesar foto 2 dari 7 di Healing">
+                    <img src="hl2.jpeg" alt="" loading="lazy" decoding="async">
+                  </button>
+                  <button class="moment-photo" type="button" aria-label="Perbesar foto 3 dari 7 di Healing">
+                    <img src="hl3.jpeg" alt="" loading="lazy" decoding="async">
+                  </button>
+                  <button class="moment-photo" type="button" aria-label="Perbesar foto 4 dari 7 di Healing">
+                    <img src="hl4.jpeg" alt="" loading="lazy" decoding="async">
+                  </button>
+                  <button class="moment-photo" type="button" aria-label="Perbesar foto 5 dari 7 di Healing">
+                    <img src="hl5.jpeg" alt="" loading="lazy" decoding="async">
+                  </button>
+                  <button class="moment-photo" type="button" aria-label="Perbesar foto 6 dari 7 di Healing">
+                    <img src="hl6.jpeg" alt="" loading="lazy" decoding="async">
+                  </button>
+                  <button class="moment-photo" type="button" aria-label="Perbesar foto 7 dari 7 di Healing">
+                    <img src="hl7.jpeg" alt="" loading="lazy" decoding="async">
+                  </button>
+                </div>
+              </section>
+
+              <!-- Album 3: Kawan-kawan -->
+              <section class="moment-group" aria-labelledby="friendsAlbumTitle" data-reveal>
+                <h3 id="friendsAlbumTitle">Bersama kawan-kawan tengil</h3>
+                <div class="moment-photo-grid">
+                  <button class="moment-photo" type="button" aria-label="Perbesar foto 1 dari 2 bersama kawan-kawan">
+                    <img src="bs1.jpeg" alt="" loading="lazy" decoding="async">
+                  </button>
+                  <button class="moment-photo" type="button" aria-label="Perbesar foto 2 dari 2 bersama kawan-kawan">
+                    <img src="bs2.jpeg" alt="" loading="lazy" decoding="async">
+                  </button>
+                </div>
+              </section>
+
+              <!-- Album 4: Tim Skripsi -->
+              <section class="moment-group" aria-labelledby="thesisAlbumTitle" data-reveal>
+                <div class="moment-group-heading">
+                  <h3 id="thesisAlbumTitle">Tim skripsi: Zia, Dhea &amp; Abrar</h3>
+                  <p>Satu judul, dibagi bertiga sesuai profesi masing-masing.</p>
+                </div>
+                <div class="moment-photo-grid">
+                  <button class="moment-photo" type="button" aria-label="Perbesar foto 1 dari 6 bersama tim skripsi">
+                    <img src="dh1.jpg" alt="" loading="lazy" decoding="async">
+                  </button>
+                  <button class="moment-photo" type="button" aria-label="Perbesar foto 2 dari 6 bersama tim skripsi">
+                    <img src="dh2.JPG" alt="" loading="lazy" decoding="async">
+                  </button>
+                  <button class="moment-photo" type="button" aria-label="Perbesar foto 3 dari 6 bersama tim skripsi">
+                    <img src="dh3.jpeg" alt="" loading="lazy" decoding="async">
+                  </button>
+                  <button class="moment-photo" type="button" aria-label="Perbesar foto 4 dari 6 bersama tim skripsi">
+                    <img src="dh4.jpeg" alt="" loading="lazy" decoding="async">
+                  </button>
+                  <button class="moment-photo" type="button" aria-label="Perbesar foto 5 dari 6 bersama tim skripsi">
+                    <img src="dh5.jpeg" alt="" loading="lazy" decoding="async">
+                  </button>
+                  <button class="moment-photo" type="button" aria-label="Perbesar foto 6 dari 6 bersama tim skripsi">
+                    <img src="dh6.jpeg" alt="" loading="lazy" decoding="async">
+                  </button>
+                </div>
+              </section>
+            </div>
+          </section>
+        </main>
+
+        <footer class="activity-page-footer">
+          <a class="activity-back-link" href="index.html">
+            <span aria-hidden="true">←</span> Kembali ke ucapan ulang tahun
+          </a>
+          <span>Dari Aceh, dengan cerita ♡</span>
+        </footer>
+      </div>
+
+      <!-- Pengumuman Screen Reader -->
+      <p class="visually-hidden" id="announcement" aria-live="polite"></p>
+    </div>
+
+    <!-- ======================================================================
+         Widget Pemutar Musik Melayang (Satu Pemutar Abadi untuk Kedua Halaman)
+         ====================================================================== -->
+    <div class="music-widget">
+      <section class="music-popover" id="musicPopover" aria-label="Pemutar musik" hidden>
+        <div class="music-popover-header">
+          <div>
+            <p class="music-kicker">LAGU BUAT HARI SPESIALMU</p>
+            <h2>Putar lagu favoritmu</h2>
+          </div>
+          <button class="music-close" id="musicClose" type="button" aria-label="Tutup pemutar musik">×</button>
+        </div>
+
+        <label class="music-label" for="musicSelect">Pilih lagu</label>
+        <select id="musicSelect" class="music-select" aria-label="Pilih lagu ulang tahun">
+          <option value="lagu.1.mp3">Lagu 1</option>
+          <option value="lagu.2.mp3" selected>Lagu 2</option>
+          <option value="lagu.3.mp3">Lagu 3</option>
+        </select>
+
+        <label class="music-add" for="musicFiles"><span aria-hidden="true">＋</span> Tambahkan lagu</label>
+        <input id="musicFiles" class="visually-hidden" type="file" accept="audio/*,.mp3,.m4a,.wav,.ogg,.aac,.flac,.webm" multiple aria-label="Tambahkan file lagu dari perangkat">
+
+        <audio id="birthdayAudio" class="birthday-audio" src="lagu.2.mp3" controls preload="metadata">
+          Browser ini belum mendukung pemutar audio.
+        </audio>
+        <p class="music-status" id="musicStatus">Lagu 2 siap diputar.</p>
+      </section>
+
+      <button class="music-toggle" id="musicToggle" type="button" aria-label="Buka pemutar musik" aria-expanded="false" aria-controls="musicPopover" title="Buka pemutar musik">
+        <span class="music-record" aria-hidden="true"><span>♪</span></span>
+      </button>
+    </div>
+
+    <!-- ======================================================================
+         Dialog Lightbox Foto Ukuran Besar (Halaman Ucapan & Kegiatan)
+         ====================================================================== -->
+    <dialog class="birthday-lightbox" id="birthdayLightbox" aria-label="Foto kenangan ukuran besar">
+      <div class="birthday-lightbox-toolbar">
+        <button class="birthday-lightbox-nav" id="birthdayLightboxPrevious" type="button" aria-label="Foto sebelumnya">←</button>
+        <button class="birthday-lightbox-nav" id="birthdayLightboxNext" type="button" aria-label="Foto berikutnya">→</button>
+        <span class="birthday-lightbox-counter" id="birthdayLightboxCounter" aria-live="polite"></span>
+        <button class="birthday-lightbox-close" id="birthdayLightboxClose" type="button" aria-label="Tutup foto besar">×</button>
+      </div>
+      <img class="birthday-lightbox-image" id="birthdayLightboxImage" alt="">
+    </dialog>
+
+    <dialog class="photo-lightbox" id="photoLightbox" aria-label="Foto kegiatan ukuran besar">
+      <div class="photo-lightbox-toolbar">
+        <button class="photo-lightbox-nav" id="photoLightboxPrevious" type="button" aria-label="Foto sebelumnya">←</button>
+        <button class="photo-lightbox-nav" id="photoLightboxNext" type="button" aria-label="Foto berikutnya">→</button>
+        <span class="photo-lightbox-counter" id="photoLightboxCounter" aria-live="polite"></span>
+        <button class="photo-lightbox-close" id="photoLightboxClose" type="button" aria-label="Tutup foto besar">×</button>
+      </div>
+      <img class="photo-lightbox-image" id="photoLightboxImage" alt="">
+    </dialog>
+  </body>
+</html>

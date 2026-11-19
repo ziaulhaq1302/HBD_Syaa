@@ -1,0 +1,1101 @@
+/* ==========================================================================
+   Gaya Halaman Kegiatan (kegiatan.html)
+   Kabar Zia dari Aceh dan Album Keseharian
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Tata Letak Utama & Latar Belakang
+   -------------------------------------------------------------------------- */
+.activity-page {
+  background:
+    radial-gradient(ellipse at 8% 12%, #ffd9ca 0, transparent 30%),
+    radial-gradient(ellipse at 92% 42%, #d9ddff 0, transparent 30%),
+    radial-gradient(ellipse at 16% 88%, #ffe7b8 0, transparent 28%),
+    linear-gradient(145deg, #ffefe6, #ffe9e0 48%, #eee8ff);
+}
+
+.activity-site-header {
+  height: 78px;
+  border-bottom: 1px solid #eee8df;
+}
+
+.activity-back-link,
+.activity-page-footer a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.activity-back-link span,
+.activity-page-footer a span {
+  color: var(--coral);
+  font-size: 17px;
+}
+
+/* --------------------------------------------------------------------------
+   Hero & Intro Kegiatan
+   -------------------------------------------------------------------------- */
+.activity-page-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+  align-items: center;
+  gap: 36px;
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 68px 48px 58px;
+}
+
+.activity-page-intro h1 {
+  max-width: 470px;
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(42px, 5vw, 61px);
+  font-weight: 600;
+  letter-spacing: -1.6px;
+  line-height: 1.08;
+}
+
+.activity-page-intro h1 span {
+  color: var(--coral);
+}
+
+.activity-page-intro > p:not(.eyebrow) {
+  max-width: 380px;
+  margin: 16px 0 0;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.activity-cv-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 42px;
+  margin-top: 21px;
+  padding: 0 16px;
+  border-radius: 999px;
+  background: var(--ink);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 800;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.activity-cv-link span {
+  color: var(--yellow);
+  font-size: 15px;
+}
+
+/* --------------------------------------------------------------------------
+   Kartu Profil Zia
+   -------------------------------------------------------------------------- */
+.zia-profile-card {
+  padding: 26px;
+  border: 1px solid #efe7dd;
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 18px 48px #5a423414;
+}
+
+.zia-profile-heading {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.zia-avatar {
+  position: relative;
+  width: 58px;
+  height: 58px;
+  flex: 0 0 58px;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  border-radius: 16px 16px 16px 4px;
+  background: linear-gradient(145deg, var(--coral), #ffbd82);
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: 21px;
+  font-weight: 700;
+}
+
+.zia-avatar img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  border-radius: inherit;
+  object-fit: cover;
+  object-position: center 30%;
+}
+
+.zia-kicker {
+  margin: 0 0 5px;
+  color: #8a7e9f;
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: 1.2px;
+}
+
+.zia-profile-heading h2 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 23px;
+  font-weight: 600;
+  letter-spacing: -0.3px;
+}
+
+.zia-location {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin-left: auto;
+  padding: 8px 11px;
+  border-radius: 999px;
+  background: #f0f8ee;
+  color: #47764e;
+  font-size: 10px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.zia-location span {
+  color: #69a76d;
+  font-size: 8px;
+}
+
+.zia-message {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-top: 21px;
+  padding: 16px;
+  border-left: 3px solid var(--coral);
+  border-radius: 0 10px 10px 0;
+  background: #fff6f1;
+}
+
+.zia-message > span {
+  flex: 0 0 auto;
+  color: var(--coral);
+  font-size: 20px;
+  line-height: 1.35;
+}
+
+.zia-message p {
+  margin: 0;
+  color: #5f596a;
+  font-size: 11px;
+  line-height: 1.85;
+}
+
+.zia-message strong {
+  color: var(--ink);
+}
+
+.zia-status {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.zia-status span {
+  padding: 8px 10px;
+  border: 1px solid #eee8df;
+  border-radius: 999px;
+  color: #665d74;
+  font-size: 9px;
+  font-weight: 700;
+}
+
+.zia-cheer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.zia-cheer-button {
+  min-height: 38px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 13px;
+  border: 1px solid #f3d9d3;
+  border-radius: 999px;
+  background: #fff8f5;
+  color: #a64e4c;
+  cursor: pointer;
+  font: inherit;
+  font-size: 10px;
+  font-weight: 800;
+  transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.zia-cheer-button > span:first-child {
+  font-size: 16px;
+  line-height: 1;
+}
+
+.zia-cheer-button[aria-pressed="true"] {
+  border-color: var(--coral);
+  background: var(--coral);
+  color: #fff;
+  box-shadow: 0 6px 16px #f07d6c40;
+}
+
+.zia-cheer-button[aria-pressed="true"] > span:first-child {
+  animation: heart-pop 0.35s ease;
+}
+
+.zia-cheer-message {
+  margin: 0;
+  color: #655b70;
+  font-size: 10px;
+}
+
+/* --------------------------------------------------------------------------
+   Teks Berjalan (Marquee)
+   -------------------------------------------------------------------------- */
+.zia-marquee {
+  overflow: hidden;
+  border-block: 1px solid #f1e4d9;
+  background: #fff8f1;
+  color: #75647b;
+}
+
+.zia-marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee-scroll 28s linear infinite;
+}
+
+.zia-marquee-copy {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 13px 22px;
+  white-space: nowrap;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+}
+
+.zia-marquee-copy span {
+  color: var(--coral);
+  font-size: 14px;
+}
+
+/* --------------------------------------------------------------------------
+   Foto Pembuka (Cover)
+   -------------------------------------------------------------------------- */
+.activity-cover-photos {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 12px;
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 0 48px 42px;
+}
+
+/* --------------------------------------------------------------------------
+   Album & Koleksi Foto Keseharian
+   -------------------------------------------------------------------------- */
+.moment-collection {
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 12px 48px 86px;
+}
+
+.moment-collection-heading {
+  margin-bottom: 34px;
+  text-align: center;
+}
+
+.moment-collection-heading .eyebrow {
+  justify-content: center;
+}
+
+.moment-collection-heading h2 {
+  margin: 0;
+}
+
+.moment-collection-heading h2 span {
+  color: var(--coral);
+}
+
+.moment-collection-heading > p:last-child {
+  margin: 10px 0 0;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.album-jump-nav {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin: -12px 0 30px;
+}
+
+.album-jump-nav a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 38px;
+  padding: 0 13px;
+  border: 1px solid #eee4dc;
+  border-radius: 999px;
+  background: #ffffffc9;
+  color: #655b70;
+  font-size: 10px;
+  font-weight: 800;
+  transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease, color 0.2s ease;
+}
+
+.album-jump-nav a span {
+  display: grid;
+  min-width: 20px;
+  height: 20px;
+  place-items: center;
+  border-radius: 50%;
+  background: #fff0e9;
+  color: #b75d52;
+  font-size: 9px;
+}
+
+.album-jump-nav a:focus-visible,
+.activity-cv-link:focus-visible,
+.activity-back-link:focus-visible,
+.activity-page-footer a:focus-visible,
+.moment-photo:focus-visible,
+.zia-cheer-button:focus-visible,
+.photo-lightbox button:focus-visible {
+  outline: 3px solid #e28d78;
+  outline-offset: 3px;
+}
+
+.moment-groups {
+  display: grid;
+  gap: 32px;
+}
+
+.moment-group {
+  padding: 22px;
+  border: 1px solid #f0e9e3;
+  border-radius: 14px;
+  background: #ffffffc9;
+}
+
+.moment-group h3 {
+  margin: 0 0 17px;
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.moment-group-heading {
+  margin-bottom: 17px;
+}
+
+.moment-group-heading h3 {
+  margin-bottom: 5px;
+}
+
+.moment-group-heading p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+.moment-photo-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.moment-photo {
+  position: relative;
+  display: block;
+  min-width: 0;
+  aspect-ratio: 1 / 1;
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid #fff;
+  border-radius: 10px;
+  background: #eee5da;
+  box-shadow: 0 7px 18px #5a423414;
+  cursor: zoom-in;
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+}
+
+.moment-photo img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.moment-photo::after {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: grid;
+  width: 29px;
+  height: 29px;
+  place-items: center;
+  border: 1px solid #ffffff99;
+  border-radius: 50%;
+  background: #292241b3;
+  color: #fff;
+  content: "↗";
+  font-size: 14px;
+  opacity: 0;
+  transform: translateY(3px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+/* --------------------------------------------------------------------------
+   Dialog Lightbox Foto
+   -------------------------------------------------------------------------- */
+.photo-lightbox {
+  position: fixed;
+  inset: 0;
+  width: min(94vw, 1180px);
+  height: min(92vh, 860px);
+  max-width: none;
+  max-height: none;
+  margin: auto;
+  padding: 12px;
+  overflow: hidden;
+  border: 0;
+  border-radius: 14px;
+  background: #171423f2;
+}
+
+.photo-lightbox[open] {
+  display: grid;
+  grid-template-rows: 42px minmax(0, 1fr);
+  gap: 4px;
+}
+
+.photo-lightbox::backdrop {
+  background: #171423e8;
+  backdrop-filter: blur(5px);
+}
+
+.photo-lightbox-toolbar {
+  display: grid;
+  grid-template-columns: 38px 38px 1fr 38px;
+  align-items: center;
+  gap: 8px;
+}
+
+.photo-lightbox-nav,
+.photo-lightbox-close {
+  width: 38px;
+  height: 38px;
+  display: grid;
+  place-items: center;
+  border: 1px solid #ffffff80;
+  border-radius: 50%;
+  background: #ffffff14;
+  color: #fff;
+  cursor: pointer;
+  font-size: 20px;
+  line-height: 1;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.photo-lightbox-counter {
+  justify-self: center;
+  color: #fff;
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+}
+
+.photo-lightbox-image {
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  display: block;
+  border-radius: 9px;
+  object-fit: contain;
+}
+
+.photo-lightbox-close {
+  border: 2px solid #fff;
+  background: var(--coral);
+  font-size: 24px;
+  box-shadow: 0 5px 15px #0005;
+}
+
+/* --------------------------------------------------------------------------
+   Footer & Status Audio
+   -------------------------------------------------------------------------- */
+.activity-page-footer {
+  min-height: 78px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 0 8.3%;
+  border-top: 1px solid #eee8df;
+  color: #847e88;
+  font-size: 10px;
+}
+
+.activity-music-status {
+  position: absolute;
+  right: 0;
+  bottom: calc(100% + 10px);
+  width: max-content;
+  max-width: min(290px, calc(100vw - 32px));
+  margin: 0;
+  padding: 10px 13px;
+  border: 1px solid var(--surface-border);
+  border-radius: 12px;
+  background: var(--surface);
+  color: var(--ink);
+  box-shadow: 0 8px 24px #29224124;
+  font-size: 11px;
+  line-height: 1.5;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(5px);
+  transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
+  visibility: hidden;
+}
+
+.activity-music-status.is-visible {
+  opacity: 1;
+  transform: none;
+  visibility: visible;
+}
+
+/* --------------------------------------------------------------------------
+   Animasi Reveal & Efek Dasar
+   -------------------------------------------------------------------------- */
+html.has-reveal [data-reveal] {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.55s ease, transform 0.55s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+html.has-reveal [data-reveal].is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+html.has-reveal [data-reveal-delay="1"] {
+  transition-delay: 0.12s;
+}
+
+@keyframes heart-pop {
+  50% {
+    transform: scale(1.45);
+  }
+}
+
+@keyframes avatar-float {
+  50% {
+    transform: translateY(-4px) rotate(2deg);
+  }
+}
+
+@keyframes marquee-scroll {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Interaksi Hover & Pointer Halus
+   -------------------------------------------------------------------------- */
+@media (hover: hover) and (pointer: fine) {
+  .zia-marquee:hover .zia-marquee-track {
+    animation-play-state: paused;
+  }
+
+  .activity-back-link:hover,
+  .activity-page-footer a:hover {
+    color: var(--coral);
+    transform: translateX(-2px);
+  }
+
+  .activity-cv-link:hover {
+    transform: translateY(-3px);
+    background: var(--coral);
+  }
+
+  .album-jump-nav a:hover {
+    transform: translateY(-2px);
+    border-color: #efb6a8;
+    background: #fff;
+    color: var(--coral);
+  }
+
+  .zia-cheer-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px #f07d6c24;
+  }
+
+  .photo-lightbox-nav:hover {
+    transform: scale(1.06);
+    background: #ffffff30;
+  }
+
+  .photo-lightbox-close:hover {
+    transform: rotate(8deg);
+    background: #e9685a;
+  }
+
+  .moment-photo:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 14px 28px #29224124;
+  }
+
+  .moment-photo:hover img {
+    transform: scale(1.05);
+  }
+
+  .moment-photo:hover::after {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Tata Letak Responsif: Tablet (<= 920px)
+   -------------------------------------------------------------------------- */
+@media (max-width: 920px) {
+  .activity-page-hero {
+    gap: 24px;
+    padding-right: 6%;
+    padding-left: 6%;
+  }
+
+  .activity-cover-photos {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    padding-right: 6%;
+    padding-left: 6%;
+  }
+
+  .moment-collection {
+    padding-right: 6%;
+    padding-left: 6%;
+  }
+
+  .moment-photo-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .album-jump-nav {
+    margin-bottom: 24px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Tata Letak Responsif: Ponsel (<= 680px)
+   -------------------------------------------------------------------------- */
+@media (max-width: 680px) {
+  .activity-site-header {
+    height: 70px;
+    padding: 0 22px;
+  }
+
+  .activity-back-link {
+    font-size: 10px;
+  }
+
+  .activity-page-hero {
+    grid-template-columns: 1fr;
+    gap: 25px;
+    padding: 42px 22px 40px;
+  }
+
+  .activity-page-intro h1 {
+    max-width: 390px;
+    font-size: clamp(40px, 11vw, 54px);
+  }
+
+  .activity-page-intro > p:not(.eyebrow) {
+    margin-top: 12px;
+    font-size: 12px;
+  }
+
+  .activity-cv-link {
+    min-height: 40px;
+    margin-top: 16px;
+  }
+
+  .activity-cover-photos {
+    gap: 8px;
+    padding: 0 22px 30px;
+  }
+
+  .zia-marquee-copy {
+    gap: 12px;
+    padding: 12px 16px;
+    font-size: 9px;
+    letter-spacing: 0.9px;
+  }
+
+  .zia-profile-card {
+    padding: 19px 16px;
+    border-radius: 13px;
+  }
+
+  .zia-profile-heading {
+    display: grid;
+    grid-template-columns: 52px minmax(0, 1fr);
+    gap: 11px;
+  }
+
+  .zia-avatar {
+    width: 52px;
+    height: 52px;
+    flex-basis: 52px;
+    border-radius: 14px 14px 14px 4px;
+    font-size: 19px;
+  }
+
+  .zia-kicker {
+    font-size: 7px;
+    letter-spacing: 0.9px;
+  }
+
+  .zia-profile-heading h2 {
+    font-size: 21px;
+  }
+
+  .zia-location {
+    grid-column: 2;
+    justify-self: start;
+    margin-left: 0;
+    padding: 7px 10px;
+    font-size: 9px;
+  }
+
+  .zia-message {
+    gap: 9px;
+    margin-top: 17px;
+    padding: 13px 12px;
+  }
+
+  .zia-message p {
+    font-size: 10px;
+  }
+
+  .zia-status {
+    gap: 6px;
+  }
+
+  .zia-status span {
+    padding: 7px 8px;
+    font-size: 8px;
+  }
+
+  .zia-cheer {
+    gap: 8px;
+    margin-top: 13px;
+  }
+
+  .zia-cheer-button {
+    min-height: 36px;
+    font-size: 9px;
+  }
+
+  .zia-cheer-message {
+    font-size: 9px;
+  }
+
+  .moment-collection {
+    padding: 8px 22px 62px;
+  }
+
+  .moment-collection-heading {
+    margin-bottom: 24px;
+  }
+
+  .moment-collection-heading > p:last-child {
+    font-size: 11px;
+  }
+
+  .album-jump-nav {
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    gap: 7px;
+    margin: -7px -2px 22px;
+    padding: 2px 2px 8px;
+    overflow-x: auto;
+  }
+
+  .album-jump-nav a {
+    min-height: 36px;
+    padding: 0 11px;
+    white-space: nowrap;
+  }
+
+  .moment-groups {
+    gap: 17px;
+  }
+
+  .moment-group {
+    padding: 15px;
+    border-radius: 12px;
+  }
+
+  .moment-group h3 {
+    margin-bottom: 12px;
+    font-size: 16px;
+  }
+
+  .moment-photo-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .photo-lightbox {
+    width: 92vw;
+    height: 90vh;
+    padding: 8px;
+  }
+
+  .photo-lightbox[open] {
+    grid-template-rows: 38px minmax(0, 1fr);
+  }
+
+  .photo-lightbox-toolbar {
+    grid-template-columns: 34px 34px 1fr 34px;
+    gap: 6px;
+  }
+
+  .photo-lightbox-nav,
+  .photo-lightbox-close {
+    width: 34px;
+    height: 34px;
+  }
+
+  .photo-lightbox-image {
+    border-radius: 7px;
+  }
+
+  .activity-page-footer {
+    min-height: 72px;
+    padding: 0 20px;
+    font-size: 9px;
+  }
+
+  .activity-page-footer a {
+    font-size: 10px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Aksesibilitas & Preferensi Gerakan
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: no-preference) {
+  .zia-avatar {
+    animation: avatar-float 3.2s ease-in-out infinite;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.has-reveal [data-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .zia-avatar,
+  .zia-cheer-button > span:first-child {
+    animation: none;
+  }
+
+  .zia-marquee-track {
+    width: 100%;
+    justify-content: center;
+    animation: none;
+  }
+
+  .zia-marquee-copy {
+    justify-content: center;
+    flex-wrap: wrap;
+    white-space: normal;
+    text-align: center;
+  }
+
+  .zia-marquee-copy[aria-hidden="true"] {
+    display: none;
+  }
+}
+
+
+/* ==========================================================================
+   Dukungan Mode Gelap (Dark Mode) untuk Halaman Kegiatan
+   ========================================================================== */
+:root[data-theme="dark"] .activity-page {
+  background:
+    radial-gradient(ellipse at 8% 12%, #422934 0, transparent 35%),
+    radial-gradient(ellipse at 92% 42%, #2d264a 0, transparent 35%),
+    radial-gradient(ellipse at 16% 88%, #3c3225 0, transparent 32%),
+    linear-gradient(145deg, #1f1b29, #241d30 48%, #181522);
+}
+
+:root[data-theme="dark"] .activity-site-header {
+  border-bottom-color: var(--surface-border);
+}
+
+:root[data-theme="dark"] .zia-profile-card {
+  background: var(--surface);
+  border-color: var(--surface-border);
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.4);
+}
+
+:root[data-theme="dark"] .zia-profile-heading h2 {
+  color: var(--ink);
+}
+
+:root[data-theme="dark"] .zia-location {
+  background: #233726;
+  color: #8ed395;
+}
+
+:root[data-theme="dark"] .zia-location span {
+  color: #79c581;
+}
+
+:root[data-theme="dark"] .zia-message {
+  background: #382528;
+  border-left-color: var(--coral);
+}
+
+:root[data-theme="dark"] .zia-message p {
+  color: #d8cfe2;
+}
+
+:root[data-theme="dark"] .zia-message strong {
+  color: #fff;
+}
+
+:root[data-theme="dark"] .zia-status span {
+  background: var(--surface);
+  border-color: var(--surface-border);
+  color: var(--muted);
+}
+
+:root[data-theme="dark"] .zia-cheer-button {
+  background: #3a2529;
+  border-color: #63383a;
+  color: #ff9fa8;
+}
+
+:root[data-theme="dark"] .zia-cheer-message {
+  color: var(--muted);
+}
+
+:root[data-theme="dark"] .zia-marquee {
+  background: #241d2f;
+  border-block-color: var(--surface-border);
+  color: #bfb5c7;
+}
+
+:root[data-theme="dark"] .album-jump-nav {
+  background: #241d2ecc;
+}
+
+:root[data-theme="dark"] .album-jump-nav a {
+  background: var(--surface);
+  border-color: var(--surface-border);
+  color: var(--ink);
+}
+
+:root[data-theme="dark"] .album-jump-nav a span {
+  background: #472d2e;
+  color: #ff9d94;
+}
+
+:root[data-theme="dark"] .moment-group {
+  background: #272033c9;
+  border-color: var(--surface-border);
+}
+
+:root[data-theme="dark"] .moment-photo {
+  background: #372e44;
+  border-color: #493e58;
+}
+
+:root[data-theme="dark"] .activity-page-footer {
+  border-top-color: var(--surface-border);
+  color: var(--muted);
+}
+
+/* ==========================================================================
+   Hadiah Interaktif untuk Zia (Kopi & Doa)
+   ========================================================================== */
+.zia-gift-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.zia-gift-btn {
+  min-height: 32px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 11px;
+  border: 1px solid #ebdcd5;
+  border-radius: 999px;
+  background: #fffdf9;
+  color: #6f5f73;
+  cursor: pointer;
+  font: inherit;
+  font-size: 9px;
+  font-weight: 800;
+  transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease, color 0.2s ease;
+}
+
+.zia-gift-btn:hover {
+  transform: translateY(-2px);
+  border-color: var(--coral);
+  color: var(--coral);
+}
+
+:root[data-theme="dark"] .zia-gift-btn {
+  background: #302636;
+  border-color: var(--surface-border);
+  color: #d1c8d8;
+}
+
+.zia-toast-note {
+  margin: 8px 0 0;
+  color: var(--coral);
+  font-size: 10px;
+  font-weight: 700;
+  min-height: 1.4em;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.zia-toast-note.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
